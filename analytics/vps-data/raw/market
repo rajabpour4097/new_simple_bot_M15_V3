@@ -1,0 +1,32 @@
+import pandas as pd
+from datetime import datetime
+
+# فرض کنید این داده‌ها را در طول زمان جمع‌آوری کرده‌اید
+data = {
+    'timestamp': [],
+    'open_price': [],
+    'close_price': [],
+    'high_price': [],
+    'low_price': [],
+    'volume': [],
+    'profit_loss': [],
+    'trade_signal': []
+}
+
+# تابعی برای ذخیره‌سازی داده‌ها
+def save_trade_data(timestamp, open_price, close_price, high_price, low_price, volume, profit_loss, trade_signal):
+    data['timestamp'].append(timestamp)
+    data['open_price'].append(open_price)
+    data['close_price'].append(close_price)
+    data['high_price'].append(high_price)
+    data['low_price'].append(low_price)
+    data['volume'].append(volume)
+    data['profit_loss'].append(profit_loss)
+    data['trade_signal'].append(trade_signal)
+
+    # ذخیره‌سازی در فایل CSV
+    df = pd.DataFrame(data)
+    df.to_csv('trade_data.csv', index=False)
+
+# مثال از نحوه استفاده از تابع
+save_trade_data(datetime.now(), 1.2000, 1.2050, 1.2060, 1.1990, 1000, 50, 'buy')

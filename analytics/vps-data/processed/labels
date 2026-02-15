@@ -1,0 +1,42 @@
+import pandas as pd
+from datetime import datetime
+
+# فرض کنید این داده‌ها را از معاملات خود جمع‌آوری کرده‌اید
+data = {
+    'timestamp': [],
+    'symbol': [],
+    'action': [],  # 'buy' یا 'sell'
+    'price': [],
+    'volume': [],
+    'profit': [],
+    'market_condition': [],
+}
+
+# تابعی برای ذخیره‌سازی داده‌ها
+def save_trade_data(trade_info):
+    # اضافه کردن اطلاعات جدید به دیکشنری
+    data['timestamp'].append(datetime.now())
+    data['symbol'].append(trade_info['symbol'])
+    data['action'].append(trade_info['action'])
+    data['price'].append(trade_info['price'])
+    data['volume'].append(trade_info['volume'])
+    data['profit'].append(trade_info['profit'])
+    data['market_condition'].append(trade_info['market_condition'])
+
+    # تبدیل دیکشنری به DataFrame
+    df = pd.DataFrame(data)
+
+    # ذخیره‌سازی در فایل CSV
+    df.to_csv('trade_data.csv', index=False)
+
+# مثال از نحوه استفاده
+trade_info = {
+    'symbol': 'EURUSD',
+    'action': 'buy',
+    'price': 1.2000,
+    'volume': 0.01,
+    'profit': 10.0,
+    'market_condition': 'bullish',
+}
+
+save_trade_data(trade_info)

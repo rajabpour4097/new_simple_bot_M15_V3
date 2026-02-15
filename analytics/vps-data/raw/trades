@@ -1,0 +1,24 @@
+import pandas as pd
+from datetime import datetime
+
+# لیست برای ذخیره داده‌ها
+data = []
+
+def log_trade(price, volume, trade_type, profit_loss, timestamp):
+    # جمع‌آوری اطلاعات در یک دیکشنری
+    trade_info = {
+        'timestamp': timestamp,
+        'price': price,
+        'volume': volume,
+        'trade_type': trade_type,
+        'profit_loss': profit_loss
+    }
+    data.append(trade_info)
+
+# در هر بار انجام معامله، تابع log_trade را فراخوانی کنید
+# به عنوان مثال:
+log_trade(1.2050, 0.01, 'buy', 10.0, datetime.now())
+
+# در پایان روز یا در زمان مناسب، داده‌ها را در فایل CSV ذخیره کنید
+df = pd.DataFrame(data)
+df.to_csv('trading_data.csv', index=False)

@@ -1,0 +1,36 @@
+import pandas as pd
+from datetime import datetime
+
+# لیست برای ذخیره داده‌ها
+data = []
+
+# تابع برای ذخیره‌سازی داده‌ها
+def log_trade_data(symbol, trade_type, volume, entry_price, exit_price, profit, timestamp):
+    data.append({
+        'timestamp': timestamp,
+        'symbol': symbol,
+        'trade_type': trade_type,
+        'volume': volume,
+        'entry_price': entry_price,
+        'exit_price': exit_price,
+        'profit': profit
+    })
+
+# در هر معامله، اطلاعات را ذخیره کنید
+def execute_trade(symbol, trade_type, volume):
+    # فرض کنید اینجا کد معامله شماست
+    entry_price = get_current_price(symbol)  # تابعی برای دریافت قیمت فعلی
+    # انجام معامله...
+    exit_price = get_exit_price(symbol)  # تابعی برای دریافت قیمت خروج
+    profit = calculate_profit(entry_price, exit_price, volume)  # تابعی برای محاسبه سود
+
+    # ذخیره‌سازی داده‌ها
+    log_trade_data(symbol, trade_type, volume, entry_price, exit_price, profit, datetime.now())
+
+# در پایان، داده‌ها را در فایل CSV ذخیره کنید
+def save_to_csv():
+    df = pd.DataFrame(data)
+    df.to_csv('trading_data.csv', index=False)
+
+# در انتهای برنامه یا در زمان مناسب، این تابع را فراخوانی کنید
+save_to_csv()

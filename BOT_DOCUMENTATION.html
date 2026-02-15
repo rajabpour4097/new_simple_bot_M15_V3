@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستندات ربات معاملاتی M15</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #00d4ff;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #ff6b6b;
+            border-bottom: 2px solid #ff6b6b;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #ffd93d;
+            margin-top: 30px;
+        }
+        .section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .flowchart {
+            background: #0f0f23;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .flowchart pre {
+            margin: 0;
+            color: #6ee7b7;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .code-block {
+            background: #1e1e3f;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            border-left: 4px solid #00d4ff;
+        }
+        .highlight-green { color: #6ee7b7; }
+        .highlight-red { color: #ff6b6b; }
+        .highlight-yellow { color: #ffd93d; }
+        .highlight-blue { color: #00d4ff; }
+        .highlight-purple { color: #c084fc; }
+        
+        .warning {
+            background: rgba(255, 107, 107, 0.2);
+            border: 1px solid #ff6b6b;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .info {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .success {
+            background: rgba(110, 231, 183, 0.1);
+            border: 1px solid #6ee7b7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px;
+            text-align: right;
+        }
+        th {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+        }
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .box {
+            background: linear-gradient(135deg, #2d2d44 0%, #1a1a2e 100%);
+            border: 2px solid;
+            border-radius: 10px;
+            padding: 15px 20px;
+            text-align: center;
+            min-width: 150px;
+        }
+        .box-blue { border-color: #00d4ff; }
+        .box-green { border-color: #6ee7b7; }
+        .box-red { border-color: #ff6b6b; }
+        .box-yellow { border-color: #ffd93d; }
+        .box-purple { border-color: #c084fc; }
+        
+        .arrow {
+            font-size: 24px;
+            color: #888;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline-item {
+            display: flex;
+            margin: 15px 0;
+            align-items: flex-start;
+        }
+        .timeline-time {
+            background: #00d4ff;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            min-width: 80px;
+            text-align: center;
+            margin-left: 20px;
+        }
+        .timeline-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .toc {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .toc a {
+            color: #00d4ff;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+        .toc a:hover {
+            color: #ffd93d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 مستندات ربات معاملاتی M15</h1>
+        <p class="subtitle">نسخه با فیلتر M15 و تأخیر ورود روی مرز 15 دقیقه</p>
+        
+        <div class="toc">
+            <h3>📑 فهرست مطالب</h3>
+            <a href="#overview">1. نمای کلی سیستم</a>
+            <a href="#m15-filter">2. فیلتر M15 - منطق و عملکرد</a>
+            <a href="#m15-boundary">3. تشخیص مرز M15 و سیگنال معلق</a>
+            <a href="#signal-flow">4. جریان تولید و اجرای سیگنال</a>
+            <a href="#timing">5. زمان‌بندی و مثال‌های عملی</a>
+            <a href="#validation">6. چک‌لیست صحت‌سنجی</a>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <div class="section" id="overview">
+            <h2>1. نمای کلی سیستم</h2>
+            
+            <h3>🎯 هدف اصلی</h3>
+            <p>
+                این ربات بر اساس استراتژی <strong>Fibonacci Retracement</strong> با فیلتر <strong>M15</strong> کار می‌کند.
+                هدف این است که فقط معاملاتی باز شوند که کندل 15 دقیقه‌ای <strong>تکمیل شده</strong> با جهت معامله همسو باشد.
+            </p>
+            
+            <div class="diagram">
+                <div class="box box-blue">📊 داده M1</div>
+                <span class="arrow">→</span>
+                <div class="box box-yellow">🔍 شناسایی Swing</div>
+                <span class="arrow">→</span>
+                <div class="box box-purple">📐 محاسبه Fibonacci</div>
+                <span class="arrow">→</span>
+                <div class="box box-green">✅ فیلتر M15</div>
+                <span class="arrow">→</span>
+                <div class="box box-red">💹 ورود به معامله</div>
+            </div>
+
+            <h3>📋 مراحل کلی</h3>
+            <table>
+                <tr>
+                    <th>مرحله</th>
+                    <th>توضیح</th>
+                    <th>فایل/تابع</th>
+                </tr>
+                <tr>
+                    <td>1. دریافت داده</td>
+                    <td>دریافت کندل‌های M1 از MT5</td>
+                    <td>mt5_conn.get_historical_data()</td>
+                </tr>
+                <tr>
+                    <td>2. شناسایی Legs</td>
+                    <td>تشخیص حرکات بزرگ قیمت</td>
+                    <td>get_legs()</td>
+                </tr>
+                <tr>
+                    <td>3. شناسایی Swing</td>
+                    <td>تشخیص نقاط چرخش (bullish/bearish)</td>
+                    <td>get_swing_points()</td>
+                </tr>
+                <tr>
+                    <td>4. محاسبه Fibonacci</td>
+                    <td>تعیین سطوح 0.0, 0.705, 0.9, 1.0</td>
+                    <td>fibonacci_retracement()</td>
+                </tr>
+                <tr>
+                    <td>5. First/Second Touch</td>
+                    <td>انتظار برای لمس سطح 0.705</td>
+                    <td>state.first_touch, state.second_touch</td>
+                </tr>
+                <tr>
+                    <td>6. فیلتر M15</td>
+                    <td>بررسی همسویی کندل M15</td>
+                    <td>check_m15_aligned_with_position()</td>
+                </tr>
+                <tr>
+                    <td>7. بررسی مرز M15</td>
+                    <td>اگر روی مرز باشد → تأخیر</td>
+                    <td>is_at_m15_boundary()</td>
+                </tr>
+                <tr>
+                    <td>8. اجرای معامله</td>
+                    <td>باز کردن پوزیشن در MT5</td>
+                    <td>open_buy_position() / open_sell_position()</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 2: M15 Filter -->
+        <div class="section" id="m15-filter">
+            <h2>2. فیلتر M15 - منطق و عملکرد</h2>
+            
+            <h3>📌 تابع get_last_completed_m15_candle()</h3>
+            <div class="code-block">
+<span class="highlight-green"># دریافت آخرین کندل M15 تکمیل‌شده</span>
+rates = mt5.copy_rates_from_pos(symbol, mt5.TIMEFRAME_M15, 0, 3)
+
+<span class="highlight-yellow"># ایندکس‌ها:</span>
+rates[-1] = کندل در حال تشکیل (ناقص) ❌
+rates[-2] = آخرین کندل کامل شده ✅  <span class="highlight-green">← این برگردانده می‌شود</span>
+rates[-3] = کندل قبل‌تر
+            </div>
+            
+            <div class="info">
+                <strong>🔑 نکته مهم:</strong> این تابع همیشه کندل <strong>تکمیل شده</strong> را برمی‌گرداند، نه کندل در حال تشکیل.
+            </div>
+
+            <h3>📌 تابع check_m15_aligned_with_position()</h3>
+            <table>
+                <tr>
+                    <th>نوع پوزیشن</th>
+                    <th>M15 مورد نیاز</th>
+                    <th>شرط</th>
+                </tr>
+                <tr>
+                    <td class="highlight-green">BUY</td>
+                    <td>Bullish (صعودی)</td>
+                    <td>close > open</td>
+                </tr>
+                <tr>
+                    <td class="highlight-red">SELL</td>
+                    <td>Bearish (نزولی)</td>
+                    <td>close < open</td>
+                </tr>
+            </table>
+
+            <div class="flowchart">
+<pre>
+┌─────────────────────────────────────────────────────────────────┐
+│                    فیلتر M15 - فلوچارت                          │
+└─────────────────────────────────────────────────────────────────┘
+
+                        ┌──────────────┐
+                        │ سیگنال BUY   │
+                        │ یا SELL      │
+                        └──────┬───────┘
+                               │
+                               ▼
+                   ┌───────────────────────┐
+                   │ get_last_completed    │
+                   │ _m15_candle()         │
+                   └───────────┬───────────┘
+                               │
+                               ▼
+                   ┌───────────────────────┐
+                   │ آیا M15 همسو است؟     │
+                   │ BUY → bullish?        │
+                   │ SELL → bearish?       │
+                   └───────────┬───────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │ YES            │                │ NO
+              ▼                                 ▼
+    ┌─────────────────┐               ┌─────────────────┐
+    │ ادامه به مرحله  │               │ ❌ SKIP سیگنال  │
+    │ بعدی (بررسی    │               │ ایمیل ارسال شود │
+    │ مرز M15)        │               │ state.reset()   │
+    └─────────────────┘               └─────────────────┘
+</pre>
+            </div>
+        </div>
+
+        <!-- Section 3: M15 Boundary -->
+        <div class="section" id="m15-boundary">
+            <h2>3. تشخیص مرز M15 و سیگنال معلق</h2>
+            
+            <h3>🎯 مشکل اصلی</h3>
+            <div class="warning">
+                <strong>⚠️ Look-Ahead Bias:</strong>
+                اگر سیگنال دقیقاً روی مرز 15 دقیقه باشد (مثلاً 12:30:00)، کندل M15 که برمی‌گردد (12:15-12:30) 
+                هنوز در حال تشکیل است و close آن نهایی نیست!
+            </div>
+
+            <h3>📌 تابع is_at_m15_boundary()</h3>
+            <div class="code-block">
+<span class="highlight-blue">def</span> is_at_m15_boundary(dt: datetime = None) -> bool:
+    <span class="highlight-green">"""
+    بررسی اینکه آیا زمان فعلی روی مرز 15 دقیقه است
+    (یعنی دقیقه = 0، 15، 30، یا 45)
+    """</span>
+    <span class="highlight-blue">if</span> dt <span class="highlight-blue">is</span> None:
+        dt = datetime.now()
+    <span class="highlight-blue">return</span> dt.minute % 15 == 0
+            </div>
+
+            <table>
+                <tr>
+                    <th>زمان</th>
+                    <th>دقیقه % 15</th>
+                    <th>روی مرز؟</th>
+                    <th>اقدام</th>
+                </tr>
+                <tr>
+                    <td>12:00:xx</td>
+                    <td>0</td>
+                    <td class="highlight-red">✅ بله</td>
+                    <td>→ سیگنال معلق</td>
+                </tr>
+                <tr>
+                    <td>12:15:xx</td>
+                    <td>0</td>
+                    <td class="highlight-red">✅ بله</td>
+                    <td>→ سیگنال معلق</td>
+                </tr>
+                <tr>
+                    <td>12:30:xx</td>
+                    <td>0</td>
+                    <td class="highlight-red">✅ بله</td>
+                    <td>→ سیگنال معلق</td>
+                </tr>
+                <tr>
+                    <td>12:45:xx</td>
+                    <td>0</td>
+                    <td class="highlight-red">✅ بله</td>
+                    <td>→ سیگنال معلق</td>
+                </tr>
+                <tr>
+                    <td>12:31:xx</td>
+                    <td>1</td>
+                    <td class="highlight-green">❌ خیر</td>
+                    <td>→ اجرای فوری</td>
+                </tr>
+                <tr>
+                    <td>12:47:xx</td>
+                    <td>2</td>
+                    <td class="highlight-green">❌ خیر</td>
+                    <td>→ اجرای فوری</td>
+                </tr>
+            </table>
+
+            <h3>📌 کلاس PendingSignal</h3>
+            <div class="code-block">
+<span class="highlight-blue">class</span> PendingSignal:
+    <span class="highlight-green">"""نگهداری اطلاعات سیگنال معلق"""</span>
+    
+    signal_type: str        <span class="highlight-yellow"># 'BUY' یا 'SELL'</span>
+    fib_levels: dict        <span class="highlight-yellow"># سطوح فیبوناچی</span>
+    fib0_time, fib1_time    <span class="highlight-yellow"># زمان نقاط فیبو</span>
+    first_touch_value       <span class="highlight-yellow"># اطلاعات لمس اول</span>
+    second_touch_value      <span class="highlight-yellow"># اطلاعات لمس دوم</span>
+    m15_data: dict          <span class="highlight-yellow"># اطلاعات کندل M15</span>
+    signal_time: datetime   <span class="highlight-yellow"># زمان سیگنال</span>
+    created_at: datetime    <span class="highlight-yellow"># زمان ایجاد</span>
+    
+    <span class="highlight-blue">def</span> is_expired(max_age_seconds=120):
+        <span class="highlight-green"># سیگنال‌ها بعد از 2 دقیقه منقضی می‌شوند</span>
+        <span class="highlight-blue">return</span> (now - created_at) > 120 seconds
+            </div>
+
+            <div class="flowchart">
+<pre>
+┌─────────────────────────────────────────────────────────────────┐
+│                منطق سیگنال معلق - فلوچارت                       │
+└─────────────────────────────────────────────────────────────────┘
+
+                        ┌──────────────┐
+                        │ سیگنال جدید │
+                        │ (M15 aligned)│
+                        └──────┬───────┘
+                               │
+                               ▼
+                   ┌───────────────────────┐
+                   │ آیا روی مرز M15؟      │
+                   │ (دقیقه % 15 == 0)     │
+                   └───────────┬───────────┘
+                               │
+              ┌────────────────┼────────────────┐
+              │ YES            │                │ NO
+              ▼                                 ▼
+    ┌─────────────────┐               ┌─────────────────┐
+    │ 📦 ذخیره در     │               │ ✅ اجرای فوری   │
+    │ PendingSignal   │               │ پوزیشن          │
+    │                 │               │                 │
+    │ ایمیل: PENDING  │               │                 │
+    │ state.reset()   │               │                 │
+    └────────┬────────┘               └─────────────────┘
+             │
+             │ <span class="highlight-yellow">منتظر کندل بعدی (دقیقه 1, 16, 31, 46)</span>
+             │
+             ▼
+    ┌─────────────────────────────────────┐
+    │ 🔄 دور بعدی loop                    │
+    │                                     │
+    │ if pending_signal and not boundary: │
+    └────────────────┬────────────────────┘
+                     │
+                     ▼
+           ┌─────────────────┐
+           │ آیا منقضی شده؟  │
+           │ (> 2 دقیقه)     │
+           └────────┬────────┘
+                    │
+       ┌────────────┼────────────┐
+       │ YES        │            │ NO
+       ▼                         ▼
+  ┌──────────┐          ┌─────────────────┐
+  │ ❌ حذف   │          │ ری-چک M15       │
+  │ سیگنال   │          │ (کندل جدید)     │
+  └──────────┘          └────────┬────────┘
+                                 │
+                    ┌────────────┼────────────┐
+                    │ aligned    │            │ not aligned
+                    ▼                         ▼
+          ┌─────────────────┐        ┌─────────────────┐
+          │ ✅ اجرای        │        │ ❌ حذف سیگنال   │
+          │ پوزیشن          │        │ (M15 تغییر کرد) │
+          └─────────────────┘        └─────────────────┘
+</pre>
+            </div>
+        </div>
+
+        <!-- Section 4: Signal Flow -->
+        <div class="section" id="signal-flow">
+            <h2>4. جریان تولید و اجرای سیگنال</h2>
+            
+            <h3>🔄 جریان کامل برای سیگنال BUY</h3>
+            <div class="flowchart">
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        جریان کامل سیگنال BUY                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+1️⃣ شناسایی Swing Bullish
+   │
+   ├── legs > 2 ✅
+   ├── swing_type == 'bullish' ✅
+   └── close > legs[1]['start_value'] ✅
+                │
+                ▼
+2️⃣ ایجاد Fibonacci
+   │
+   ├── fib['0.0'] = قله (مقاومت)
+   ├── fib['0.705'] = ناحیه ورود
+   ├── fib['0.9'] = نزدیک حمایت
+   └── fib['1.0'] = حمایت (SL)
+                │
+                ▼
+3️⃣ انتظار برای Touch
+   │
+   ├── First Touch: قیمت به fib['0.705'] برسد
+   │   └── ثبت کندل و وضعیت (bullish/bearish)
+   │
+   └── Second Touch: قیمت دوباره به fib['0.705'] برسد
+       └── با وضعیت مخالف (مثلاً اول bearish، دوم bullish)
+                │
+                ▼
+4️⃣ last_swing_type == 'bullish' AND state.second_touch == True
+                │
+                ▼
+5️⃣ فیلتر M15
+   │
+   ├── m15_data = get_last_completed_m15_candle()
+   │   └── کندل M15 تکمیل شده (rates[-2])
+   │
+   └── check_m15_aligned_with_position('BUY', m15_data)
+       │
+       ├── ❌ NOT ALIGNED → SKIP + ایمیل + reset
+       │
+       └── ✅ ALIGNED → ادامه
+                │
+                ▼
+6️⃣ بررسی پوزیشن‌های باز
+   │
+   └── prevent_multiple_positions?
+       │
+       ├── ❌ پوزیشن باز وجود دارد → SKIP + ایمیل
+       │
+       └── ✅ آزاد است → ادامه
+                │
+                ▼
+7️⃣ بررسی مرز M15 ⭐ <span class="highlight-yellow">(منطق جدید)</span>
+   │
+   └── is_at_m15_boundary()?
+       │
+       ├── ✅ روی مرز (دقیقه % 15 == 0)
+       │   │
+       │   └── 📦 PendingSignal ذخیره شود
+       │       ├── ایمیل: "PENDING BUY - M15 BOUNDARY"
+       │       ├── state.reset()
+       │       └── continue (منتظر دور بعدی)
+       │
+       └── ❌ نه روی مرز → اجرای فوری
+                │
+                ▼
+8️⃣ اجرای معامله
+   │
+   ├── entry_price = last_tick.ask
+   ├── SL = fib['1.0']
+   ├── TP = entry + (SL_distance × win_ratio)
+   │
+   └── mt5_conn.open_buy_position()
+</pre>
+            </div>
+
+            <h3>📊 مقایسه: سیگنال روی مرز vs نه روی مرز</h3>
+            <div class="comparison">
+                <div class="section" style="margin: 0;">
+                    <h4 class="highlight-red">❌ سیگنال روی مرز M15</h4>
+                    <p><strong>زمان:</strong> 12:30:00</p>
+                    <ul>
+                        <li>کندل M15 12:15-12:30 هنوز در حال تشکیل</li>
+                        <li>close فعلی ≠ close نهایی</li>
+                        <li>→ ذخیره در PendingSignal</li>
+                        <li>→ منتظر 12:31:xx</li>
+                    </ul>
+                </div>
+                <div class="section" style="margin: 0;">
+                    <h4 class="highlight-green">✅ سیگنال نه روی مرز</h4>
+                    <p><strong>زمان:</strong> 12:33:00</p>
+                    <ul>
+                        <li>کندل M15 12:15-12:30 تکمیل شده</li>
+                        <li>close = close نهایی</li>
+                        <li>→ اجرای فوری پوزیشن</li>
+                        <li>→ ورود با قیمت 12:33</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Timing Examples -->
+        <div class="section" id="timing">
+            <h2>5. زمان‌بندی و مثال‌های عملی</h2>
+            
+            <h3>📅 مثال 1: سیگنال در 12:30 (روی مرز)</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-time">12:30:05</span>
+                    <div class="timeline-content">
+                        <strong>سیگنال BUY تشخیص داده شد</strong><br>
+                        - M15 چک: کندل 12:15-12:30 (rates[-2])<br>
+                        - direction = bullish ✅<br>
+                        - is_at_m15_boundary() = True (30 % 15 == 0)<br>
+                        - <span class="highlight-yellow">→ ذخیره در PendingSignal</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">12:31:02</span>
+                    <div class="timeline-content">
+                        <strong>دور جدید loop</strong><br>
+                        - pending_signal exists ✅<br>
+                        - is_at_m15_boundary() = False (31 % 15 == 1)<br>
+                        - ری-چک M15: کندل 12:15-12:30 (الان واقعاً تکمیل شده)<br>
+                        - direction = bullish ✅<br>
+                        - <span class="highlight-green">→ اجرای پوزیشن BUY</span><br>
+                        - Entry price = قیمت 12:31:02
+                    </div>
+                </div>
+            </div>
+
+            <h3>📅 مثال 2: سیگنال در 12:33 (نه روی مرز)</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-time">12:33:15</span>
+                    <div class="timeline-content">
+                        <strong>سیگنال BUY تشخیص داده شد</strong><br>
+                        - M15 چک: کندل 12:15-12:30 (تکمیل شده)<br>
+                        - direction = bullish ✅<br>
+                        - is_at_m15_boundary() = False (33 % 15 == 3)<br>
+                        - <span class="highlight-green">→ اجرای فوری پوزیشن BUY</span><br>
+                        - Entry price = قیمت 12:33:15
+                    </div>
+                </div>
+            </div>
+
+            <h3>📅 مثال 3: سیگنال روی مرز + M15 تغییر کرد</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-time">12:30:05</span>
+                    <div class="timeline-content">
+                        <strong>سیگنال BUY تشخیص داده شد</strong><br>
+                        - M15 (12:15-12:30 در حال تشکیل): bullish<br>
+                        - <span class="highlight-yellow">→ ذخیره در PendingSignal</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">12:30:59</span>
+                    <div class="timeline-content">
+                        <strong>کندل M15 12:15-12:30 بسته شد</strong><br>
+                        - close نهایی < open (قیمت برگشت!)<br>
+                        - direction واقعی = <span class="highlight-red">bearish</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-time">12:31:02</span>
+                    <div class="timeline-content">
+                        <strong>ری-چک M15</strong><br>
+                        - کندل 12:15-12:30 (تکمیل شده)<br>
+                        - direction = bearish ❌ (نیاز bullish برای BUY)<br>
+                        - <span class="highlight-red">→ سیگنال معلق حذف شد</span><br>
+                        - پوزیشن باز نمی‌شود!
+                    </div>
+                </div>
+            </div>
+
+            <div class="success">
+                <strong>✅ مزیت این روش:</strong> جلوگیری از ورود به معاملاتی که M15 واقعی (بعد از بسته شدن) با جهت معامله همسو نیست.
+            </div>
+        </div>
+
+        <!-- Section 6: Validation Checklist -->
+        <div class="section" id="validation">
+            <h2>6. چک‌لیست صحت‌سنجی</h2>
+            
+            <h3>✅ بررسی منطق M15</h3>
+            <table>
+                <tr>
+                    <th>آیتم</th>
+                    <th>وضعیت</th>
+                    <th>توضیح</th>
+                </tr>
+                <tr>
+                    <td>get_last_completed_m15_candle() از rates[-2] استفاده می‌کند</td>
+                    <td class="highlight-green">✅</td>
+                    <td>کندل تکمیل شده، نه در حال تشکیل</td>
+                </tr>
+                <tr>
+                    <td>BUY نیاز به M15 bullish دارد</td>
+                    <td class="highlight-green">✅</td>
+                    <td>close > open</td>
+                </tr>
+                <tr>
+                    <td>SELL نیاز به M15 bearish دارد</td>
+                    <td class="highlight-green">✅</td>
+                    <td>close < open</td>
+                </tr>
+                <tr>
+                    <td>اگر M15 aligned نباشد → SKIP</td>
+                    <td class="highlight-green">✅</td>
+                    <td>ایمیل ارسال، state.reset()</td>
+                </tr>
+            </table>
+
+            <h3>✅ بررسی منطق M15 Boundary</h3>
+            <table>
+                <tr>
+                    <th>آیتم</th>
+                    <th>وضعیت</th>
+                    <th>توضیح</th>
+                </tr>
+                <tr>
+                    <td>is_at_m15_boundary() زمان‌های :00, :15, :30, :45 را تشخیص می‌دهد</td>
+                    <td class="highlight-green">✅</td>
+                    <td>minute % 15 == 0</td>
+                </tr>
+                <tr>
+                    <td>سیگنال روی مرز → PendingSignal</td>
+                    <td class="highlight-green">✅</td>
+                    <td>ذخیره اطلاعات فیبو + M15</td>
+                </tr>
+                <tr>
+                    <td>ایمیل PENDING ارسال می‌شود</td>
+                    <td class="highlight-green">✅</td>
+                    <td>اطلاع‌رسانی به کاربر</td>
+                </tr>
+                <tr>
+                    <td>در دور بعدی (نه روی مرز) سیگنال معلق پردازش می‌شود</td>
+                    <td class="highlight-green">✅</td>
+                    <td>شرط: pending_signal and not is_at_m15_boundary()</td>
+                </tr>
+                <tr>
+                    <td>ری-چک M15 با کندل جدید</td>
+                    <td class="highlight-green">✅</td>
+                    <td>get_last_completed_m15_candle() دوباره</td>
+                </tr>
+                <tr>
+                    <td>انقضای سیگنال بعد از 2 دقیقه</td>
+                    <td class="highlight-green">✅</td>
+                    <td>is_expired(120)</td>
+                </tr>
+            </table>
+
+            <h3>✅ بررسی جریان کلی</h3>
+            <table>
+                <tr>
+                    <th>آیتم</th>
+                    <th>وضعیت</th>
+                    <th>توضیح</th>
+                </tr>
+                <tr>
+                    <td>فیلتر M15 قبل از بررسی پوزیشن‌های باز</td>
+                    <td class="highlight-green">✅</td>
+                    <td>ترتیب صحیح</td>
+                </tr>
+                <tr>
+                    <td>بررسی M15 boundary بعد از همه فیلترها</td>
+                    <td class="highlight-green">✅</td>
+                    <td>فقط سیگنال‌های معتبر delay می‌شوند</td>
+                </tr>
+                <tr>
+                    <td>Entry price از tick فعلی (ask/bid)</td>
+                    <td class="highlight-green">✅</td>
+                    <td>قیمت لحظه‌ای بازار</td>
+                </tr>
+                <tr>
+                    <td>SL از fib['1.0']</td>
+                    <td class="highlight-green">✅</td>
+                    <td>سطح حمایت/مقاومت</td>
+                </tr>
+                <tr>
+                    <td>TP = entry ± (SL_distance × win_ratio)</td>
+                    <td class="highlight-green">✅</td>
+                    <td>نسبت ریسک به ریوارد</td>
+                </tr>
+            </table>
+
+            <h3>⚠️ نکات مهم</h3>
+            <div class="warning">
+                <ul>
+                    <li><strong>زمان سرور MT5:</strong> تابع is_at_m15_boundary() از datetime.now() استفاده می‌کند (زمان سیستم). مطمئن شوید زمان سیستم با زمان MT5 همگام است.</li>
+                    <li><strong>انقضای سیگنال:</strong> اگر بیش از 2 دقیقه از ذخیره سیگنال بگذرد، منقضی می‌شود. این برای جلوگیری از ورود با اطلاعات قدیمی است.</li>
+                    <li><strong>ری-چک M15:</strong> کندل M15 مجدداً چک می‌شود چون ممکن است در طول تأخیر، کندل تغییر کرده باشد.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📊 خلاصه تغییرات</h2>
+            <div class="success">
+                <h3>تغییرات اعمال شده:</h3>
+                <ol>
+                    <li><strong>is_at_m15_boundary():</strong> تشخیص اینکه آیا زمان روی مرز 15 دقیقه است</li>
+                    <li><strong>PendingSignal:</strong> کلاس برای نگهداری سیگنال‌های معلق</li>
+                    <li><strong>منطق BUY:</strong> اگر روی مرز M15 باشد → ذخیره و تأخیر</li>
+                    <li><strong>منطق SELL:</strong> اگر روی مرز M15 باشد → ذخیره و تأخیر</li>
+                    <li><strong>پردازش سیگنال معلق:</strong> در دور بعدی با ری-چک M15</li>
+                </ol>
+            </div>
+        </div>
+
+        <footer style="text-align: center; margin-top: 40px; color: #666;">
+            <p>📅 تاریخ ایجاد: February 2026</p>
+            <p>🤖 ربات معاملاتی M15 Swing Fibonacci</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+import pandas as pd
+from datetime import datetime
+
+# لیست برای ذخیره اطلاعات
+data = []
+
+def log_trade(action, price, volume, profit, timestamp):
+    """ثبت اطلاعات معامله"""
+    data.append({
+        'timestamp': timestamp,
+        'action': action,
+        'price': price,
+        'volume': volume,
+        'profit': profit
+    })
+
+# در زمان باز کردن معامله
+log_trade('buy', entry_price, volume, 0, datetime.now())
+
+# در زمان بسته شدن معامله
+log_trade('sell', exit_price, volume, profit, datetime.now())
+
+# ذخیره‌سازی اطلاعات در فایل CSV
+df = pd.DataFrame(data)
+df.to_csv('trading_data.csv', index=False)
