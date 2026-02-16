@@ -71,7 +71,7 @@ TRADING_CONFIG = {
     'threshold': 6,  # Changed from 6 to 60 to detect major legs (6 pips minimum)
     'fib_705': 0.705,
     'fib_90': 0.9,
-    'window_size': 100,
+    'window_size': 200,
     'min_swing_size': 4,
     'entry_tolerance': 2.0,
     'lookback_period': 20,
